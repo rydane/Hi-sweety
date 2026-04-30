@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hi Sweety — Bubble Tea, Pancakes & Desserts à Stains</title>
+<meta name="description" content="Hi Sweety à Stains : bubble tea, milkshakes, pancakes, gaufres et desserts gourmands. Le plaisir sucré au cœur du 93." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fdf8f3; --fg:#2b1d15; --muted:#7a6a60; --card:#ffffff;
+  --primary:#e85a8e; --primary-2:#d63d77; --primary-fg:#fff;
+  --secondary:#fbe6dc; --accent:#3d2418; --border:#f0e2d5;
+  --pink-soft:#fde0ec; --cream:#faeede;
+  --shadow-soft: 0 8px 30px -10px rgba(216,80,130,.28);
+  --shadow-card: 0 4px 20px -6px rgba(60,30,20,.12);
+  --shadow-glow: 0 0 40px rgba(232,90,142,.45);
+  --grad-hero: linear-gradient(135deg,#fde0ec 0%,#faeede 50%,#fcdde9 100%);
+  --grad-primary: linear-gradient(135deg,#f483ad 0%,#d63d77 100%);
+  --grad-warm: linear-gradient(180deg,#fdf3e6 0%,#fde0ec 100%);
+  --grad-card: linear-gradient(180deg,#fff 0%,#fdf6ee 100%);
+  --t: all .35s cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Quicksand',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 1.25rem}
+h1,h2,h3,h4{font-family:'Pacifico',cursive;font-weight:400;line-height:1.1}
+
+/* NAV */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(253,248,243,.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(240,226,213,.6)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-family:'Pacifico',cursive;font-size:1.85rem;color:var(--primary)}
+.nav ul{display:none;gap:2rem;list-style:none;font-weight:600}
+.nav ul a{color:#4a3a30;transition:var(--t)}
+.nav ul a:hover{color:var(--primary)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.75rem 1.5rem;border-radius:999px;font-weight:700;font-size:.95rem;cursor:pointer;border:none;transition:var(--t);text-decoration:none;font-family:inherit}
+.btn-primary{background:var(--grad-primary);color:var(--primary-fg);box-shadow:var(--shadow-soft)}
+.btn-primary:hover{transform:scale(1.04);box-shadow:var(--shadow-glow)}
+.btn-cream{background:var(--secondary);color:var(--fg);border:1px solid var(--border);box-shadow:var(--shadow-card)}
+.btn-cream:hover{transform:scale(1.04);background:#fff}
+.btn-ghost{background:transparent;color:var(--fg)}
+.btn-ghost:hover{color:var(--primary)}
+.btn-lg{padding:.95rem 1.85rem;font-size:1rem}
+.menu-toggle{display:block;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--fg)}
+.mobile-nav{display:none;background:var(--bg);border-top:1px solid var(--border);padding:1rem 0}
+.mobile-nav ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.mobile-nav a{display:block;padding:.6rem 0;font-weight:600}
+.mobile-nav.open{display:block}
+
+@media(min-width:900px){
+  .nav ul{display:flex}
+  .menu-toggle{display:none}
+  .nav-inner{height:80px}
+  .nav-cta{display:inline-flex}
+}
+.nav-cta{display:none}
+
+/* HERO */
+.hero{padding:7rem 0 3rem;background:var(--grad-hero);position:relative;overflow:hidden}
+.hero-grid{display:grid;gap:2.5rem;align-items:center}
+@media(min-width:900px){.hero-grid{grid-template-columns:1fr 1fr;gap:3rem;padding:3rem 0}}
+.badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);padding:.4rem 1rem;border-radius:999px;color:var(--primary);font-weight:700;font-size:.85rem;box-shadow:var(--shadow-card)}
+.hero h1{font-size:clamp(2.6rem,6vw,4.6rem);margin:1rem 0}
+.hero h1 .accent{color:var(--primary)}
+.hero p{font-size:1.1rem;color:var(--muted);max-width:480px;margin-bottom:1.5rem}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.hero-stats{display:flex;align-items:center;gap:1.5rem;margin-top:1.5rem;color:var(--muted);font-size:.9rem}
+.hero-stats strong{color:var(--fg);font-size:1.2rem}
+.hero-img-wrap{position:relative}
+.hero-img-wrap::before{content:"";position:absolute;inset:-1.5rem;background:rgba(232,90,142,.18);filter:blur(60px);border-radius:50%}
+.hero-img{position:relative;border-radius:2rem;box-shadow:var(--shadow-soft);aspect-ratio:4/3;object-fit:cover;width:100%}
+.hero-card{position:absolute;bottom:-1rem;left:-.5rem;background:#fff;border-radius:1.25rem;box-shadow:var(--shadow-card);padding:.85rem 1rem;display:flex;align-items:center;gap:.75rem;animation:float 4s ease-in-out infinite}
+.hero-card .em{font-size:1.7rem}
+.hero-card .t{font-size:.85rem;font-weight:700}
+.hero-card .s{font-size:.72rem;color:var(--muted)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* SECTIONS */
+section{padding:5rem 0}
+.eyebrow{color:var(--primary);font-weight:700;text-transform:uppercase;letter-spacing:.15em;font-size:.78rem}
+.section-head{text-align:center;max-width:600px;margin:0 auto 3rem}
+.section-head h2{font-size:clamp(2rem,4vw,3rem);margin:.6rem 0 .8rem}
+.section-head p{color:var(--muted)}
+
+/* ABOUT */
+.about{background:var(--grad-warm)}
+.about-grid{display:grid;gap:3rem;align-items:center}
+@media(min-width:900px){.about-grid{grid-template-columns:1fr 1fr}}
+.about-img-wrap{position:relative}
+.about-img{border-radius:2rem;box-shadow:var(--shadow-soft);aspect-ratio:1;object-fit:cover;width:100%}
+.about-pill{position:absolute;bottom:-1.25rem;right:-1.25rem;background:var(--grad-primary);color:#fff;padding:1rem 1.5rem;border-radius:1.25rem;box-shadow:var(--shadow-glow);text-align:center}
+.about-pill .n{font-family:'Pacifico',cursive;font-size:1.85rem}
+.about-pill .l{font-size:.65rem;text-transform:uppercase;letter-spacing:.15em}
+.about h2{font-size:clamp(2rem,4vw,3rem);margin:.6rem 0 1rem}
+.about-text p{color:var(--muted);margin-bottom:1rem}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.85rem;margin-top:1.5rem}
+.feat{background:#fff;border-radius:1rem;padding:1.1rem;border:1px solid var(--border);box-shadow:var(--shadow-card)}
+.feat .ic{font-size:1.4rem;margin-bottom:.4rem}
+.feat .t{font-size:.9rem;font-weight:700}
+.feat .d{font-size:.78rem;color:var(--muted);margin-top:.2rem}
+
+/* BEST SELLERS */
+.best{background:rgba(251,230,220,.5)}
+.best-grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.best-card{position:relative;background:#fff;border-radius:1.5rem;padding:1.25rem;box-shadow:var(--shadow-card);border:1px solid var(--border);transition:var(--t)}
+.best-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-soft)}
+.best-rank{position:absolute;top:-.85rem;left:1.25rem;width:2.4rem;height:2.4rem;background:var(--grad-primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:var(--shadow-soft)}
+.best-card img{border-radius:1rem;aspect-ratio:1;object-fit:cover;margin-bottom:.85rem}
+.best-card .row{display:flex;justify-content:space-between;align-items:center}
+.best-card h3{font-size:1.3rem}
+.best-card .price{color:var(--primary);font-weight:700}
+.rating{margin-top:.4rem;color:var(--muted);font-size:.85rem}
+
+/* MENU */
+.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-bottom:2.5rem}
+.tab{padding:.65rem 1.25rem;border-radius:999px;border:none;font-weight:700;cursor:pointer;background:var(--secondary);color:var(--fg);font-family:inherit;transition:var(--t)}
+.tab:hover{box-shadow:var(--shadow-card)}
+.tab.active{background:var(--grad-primary);color:#fff;box-shadow:var(--shadow-soft)}
+.menu-grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.menu-card{background:var(--grad-card);border-radius:1.5rem;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-card);transition:var(--t)}
+.menu-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-soft)}
+.menu-img{position:relative;overflow:hidden;aspect-ratio:4/3}
+.menu-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.menu-card:hover .menu-img img{transform:scale(1.08)}
+.menu-tag{position:absolute;top:.75rem;left:.75rem;background:var(--grad-primary);color:#fff;font-size:.72rem;font-weight:700;padding:.3rem .7rem;border-radius:999px;box-shadow:var(--shadow-soft)}
+.menu-body{padding:1.25rem}
+.menu-body .row{display:flex;justify-content:space-between;align-items:start;gap:.75rem;margin-bottom:.4rem}
+.menu-body h3{font-size:1.25rem}
+.menu-body .price{color:var(--primary);font-weight:700;white-space:nowrap}
+.menu-body p{font-size:.88rem;color:var(--muted);margin-bottom:.85rem}
+.menu-body .btn{width:100%;padding:.6rem}
+
+/* ORDER */
+.order{background:var(--grad-warm)}
+.order-grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.order-card{background:#fff;border-radius:1.5rem;padding:2rem;text-align:center;border:1px solid var(--border);box-shadow:var(--shadow-card);transition:var(--t)}
+.order-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-soft)}
+.order-ic{width:64px;height:64px;background:var(--grad-primary);border-radius:1.25rem;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin:0 auto 1rem;box-shadow:var(--shadow-soft)}
+.order-card h3{font-size:1.5rem;margin-bottom:.4rem}
+.order-card p{color:var(--muted);font-size:.9rem;margin-bottom:1.25rem}
+.order-card .btn{width:100%}
+
+/* REVIEWS */
+.rev-grid{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.rev{background:var(--grad-card);border-radius:1.25rem;padding:1.5rem;border:1px solid var(--border);box-shadow:var(--shadow-card);position:relative}
+.rev .stars{color:var(--primary);margin-bottom:.6rem;font-size:.9rem;letter-spacing:.1em}
+.rev p{font-size:.9rem;color:#4a3a30;margin-bottom:.85rem;font-style:italic}
+.rev .who{font-weight:700;font-size:.9rem}
+
+/* CONTACT */
+.contact-grid{display:grid;gap:2rem;align-items:stretch}
+@media(min-width:900px){.contact-grid{grid-template-columns:1fr 1fr}}
+.map-wrap{background:#fff;border-radius:1.5rem;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-card);min-height:320px}
+.map-wrap iframe{width:100%;height:100%;border:0;min-height:320px}
+.contact-cards{display:flex;flex-direction:column;gap:1rem}
+.cc{background:var(--grad-card);border-radius:1.25rem;padding:1.5rem;border:1px solid var(--border);box-shadow:var(--shadow-card);display:flex;gap:1rem}
+.cc-ic{width:48px;height:48px;background:var(--grad-primary);color:#fff;border-radius:.85rem;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.cc .lab{font-weight:700;margin-bottom:.25rem}
+.cc p,.cc li{color:var(--muted);font-size:.9rem}
+.cc ul{list-style:none;margin-top:.4rem}
+.cc li{display:flex;justify-content:space-between;gap:1rem;padding:.2rem 0}
+.cc li span:last-child{color:var(--fg);font-weight:600}
+
+/* FOOTER */
+footer{background:var(--accent);color:#f5e6dc;padding:4rem 0 2rem;margin-top:0}
+.foot-grid{display:grid;gap:2.5rem;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.foot-grid .brand{grid-column:span 2}
+@media(max-width:700px){.foot-grid .brand{grid-column:span 1}}
+footer h4{font-family:'Pacifico',cursive;color:#fff;margin-bottom:.85rem;font-size:1.5rem}
+footer .ftitle{font-weight:700;color:#fff;margin-bottom:.85rem;font-family:'Quicksand',sans-serif}
+footer p,footer li{font-size:.88rem;opacity:.8;line-height:1.8}
+footer ul{list-style:none}
+footer ul a:hover{opacity:1;color:#fdc4d9}
+.foot-bot{margin-top:2.5rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.1);font-size:.78rem;opacity:.6;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem}
+
+.fade-up{animation:fadeUp .7s ease-out both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#accueil" class="logo">Hi Sweety</a>
+    <ul>
+      <li><a href="#accueil">Accueil</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#bestsellers">Best-sellers</a></li>
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#commander" class="btn btn-primary nav-cta">Commander 🍰</a>
+    <button class="menu-toggle" onclick="document.getElementById('mnav').classList.toggle('open')" aria-label="Menu">☰</button>
+  </div>
+  <div class="mobile-nav" id="mnav">
+    <div class="container">
+      <ul>
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#bestsellers">Best-sellers</a></li>
+        <li><a href="#apropos">À propos</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#commander" class="btn btn-primary" style="width:100%">Commander 🍰</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="accueil">
+  <div class="container hero-grid">
+    <div class="fade-up">
+      <span class="badge">📍 Stains, 93240</span>
+      <h1>Le plaisir <span class="accent">sucré</span> à Stains 🍭</h1>
+      <p>Bubble tea, milkshakes, pancakes & desserts maison. Une parenthèse gourmande au cœur de la ville, préparée avec amour 💕</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary btn-lg">Voir le menu →</a>
+        <a href="#commander" class="btn btn-cream btn-lg">Commander</a>
+        <a href="#contact" class="btn btn-ghost btn-lg">Nous trouver</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>4.9★</strong> · 320+ avis</div>
+        <div>|</div>
+        <div>Ouvert 7j/7 jusqu'à 22h</div>
+      </div>
+    </div>
+    <div class="hero-img-wrap fade-up">
+      <img src="assets/hero-sweets.jpg" alt="Pancakes, bubble tea et gaufres gourmands" class="hero-img">
+      <div class="hero-card">
+        <div class="em">🥞</div>
+        <div><div class="t">Pancakes du chef</div><div class="s">Best-seller du mois</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="apropos">
+  <div class="container about-grid">
+    <div class="about-img-wrap">
+      <img src="assets/crepe.jpg" alt="Crêpe Nutella aux fruits frais" class="about-img">
+      <div class="about-pill"><div class="n">3 ans</div><div class="l">de gourmandise</div></div>
+    </div>
+    <div class="about-text">
+      <span class="eyebrow">Notre histoire</span>
+      <h2>Une pause sucrée au cœur de Stains</h2>
+      <p>Hi Sweety est né d'une passion simple : partager des moments de douceur. Depuis notre ouverture avenue Paul Vaillant Couturier, on régale petits et grands avec des recettes maison, des produits frais et le sourire en plus.</p>
+      <p>Que ce soit pour un goûter entre amis, une pause après les cours ou un dessert à emporter, on vous accueille comme à la maison 💕</p>
+      <div class="feat-grid">
+        <div class="feat"><div class="ic">💖</div><div class="t">Fait avec amour</div><div class="d">Préparé minute pour vous.</div></div>
+        <div class="feat"><div class="ic">🌿</div><div class="t">Frais & qualité</div><div class="d">Fruits de saison.</div></div>
+        <div class="feat"><div class="ic">✨</div><div class="t">Ambiance cosy</div><div class="d">Un cocon sucré.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="best" id="bestsellers">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">⭐ Les plus aimés</span>
+      <h2>Best-sellers</h2>
+      <p>Les douceurs préférées de nos clients, à ne surtout pas manquer.</p>
+    </div>
+    <div class="best-grid">
+      <div class="best-card"><div class="best-rank">#1</div><img src="assets/pancakes.jpg" alt="Pancakes Berry"><div class="row"><h3>Pancakes Berry</h3><span class="price">8,90 €</span></div><div class="rating">★ 4.9 / 5</div></div>
+      <div class="best-card"><div class="best-rank">#2</div><img src="assets/bubble-tea.jpg" alt="Taro Lover"><div class="row"><h3>Taro Lover</h3><span class="price">5,90 €</span></div><div class="rating">★ 4.8 / 5</div></div>
+      <div class="best-card"><div class="best-rank">#3</div><img src="assets/waffle.jpg" alt="Gaufre Choco-Banane"><div class="row"><h3>Gaufre Choco</h3><span class="price">7,90 €</span></div><div class="rating">★ 5.0 / 5</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Notre carte</span>
+      <h2>Le menu gourmand</h2>
+      <p>Des recettes maison, des produits frais, et beaucoup d'amour dans chaque création.</p>
+    </div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-cat="Tous">Tous</button>
+      <button class="tab" data-cat="Bubble Tea">Bubble Tea</button>
+      <button class="tab" data-cat="Milkshakes">Milkshakes</button>
+      <button class="tab" data-cat="Pancakes & Gaufres">Pancakes & Gaufres</button>
+      <button class="tab" data-cat="Desserts">Desserts</button>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </div>
+</section>
+
+<section class="order" id="commander">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Commander</span>
+      <h2>Comment vous régaler ?</h2>
+      <p>Trois manières de croquer dans la douceur Hi Sweety.</p>
+    </div>
+    <div class="order-grid">
+      <div class="order-card"><div class="order-ic">🛍️</div><h3>À emporter</h3><p>Commandez et récupérez en boutique en 15 min.</p><a href="#" class="btn btn-primary">Commander</a></div>
+      <div class="order-card"><div class="order-ic">🛵</div><h3>Livraison</h3><p>Livré chez vous via Uber Eats & Deliveroo.</p><a href="#" class="btn btn-primary">Faire livrer</a></div>
+      <div class="order-card"><div class="order-ic">🏠</div><h3>Sur place</h3><p>Un cocon cosy pour savourer tranquillement.</p><a href="#" class="btn btn-primary">Réserver</a></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Avis clients</span>
+      <h2>Ils ont craqué pour nous</h2>
+    </div>
+    <div class="rev-grid">
+      <div class="rev"><div class="stars">★★★★★</div><p>"Le meilleur bubble tea de Stains, sans hésiter ! Les pancakes sont à tomber 😍"</p><div class="who">Sarah M.</div></div>
+      <div class="rev"><div class="stars">★★★★★</div><p>"Accueil au top, ambiance trop mignonne. Le lava cake est une tuerie, je reviens chaque semaine."</p><div class="who">Yanis B.</div></div>
+      <div class="rev"><div class="stars">★★★★★</div><p>"Mes enfants adorent les gaufres choco-banane. C'est devenu notre rituel du mercredi !"</p><div class="who">Inès K.</div></div>
+      <div class="rev"><div class="stars">★★★★★</div><p>"Produits frais, prix corrects, et le staff est trop sympa. Je recommande à 100%."</p><div class="who">Mehdi R.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Contact</span>
+      <h2>Venez nous rencontrer</h2>
+      <p>On vous accueille avec le sourire 7 jours sur 7.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="map-wrap">
+        <iframe title="Carte Hi Sweety" src="https://www.google.com/maps?q=28+Avenue+Paul+Vaillant+Couturier+93240+Stains&output=embed" loading="lazy"></iframe>
+      </div>
+      <div class="contact-cards">
+        <div class="cc"><div class="cc-ic">📍</div><div><div class="lab">Adresse</div><p>28 Avenue Paul Vaillant Couturier<br>93240 Stains, France</p></div></div>
+        <div class="cc"><div class="cc-ic">📞</div><div style="flex:1"><div class="lab">Téléphone</div><p style="margin-bottom:.75rem">+33 6 95 74 55 53</p><a href="tel:+33695745553" class="btn btn-primary">Appeler maintenant</a></div></div>
+        <div class="cc"><div class="cc-ic">🕐</div><div style="flex:1"><div class="lab">Horaires</div><ul><li><span>Lun - Jeu</span><span>12h00 — 22h00</span></li><li><span>Ven - Sam</span><span>12h00 — 23h30</span></li><li><span>Dimanche</span><span>14h00 — 22h00</span></li></ul></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="brand">
+        <h4>Hi Sweety</h4>
+        <p>Le plaisir sucré à Stains. Bubble tea, milkshakes, pancakes, gaufres & desserts maison préparés avec amour.</p>
+      </div>
+      <div>
+        <div class="ftitle">Navigation</div>
+        <ul>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#bestsellers">Best-sellers</a></li>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ftitle">Suivez-nous</div>
+        <ul>
+          <li>📷 Instagram : @hi_sweet.y</li>
+          <li>👻 Snapchat : hi_sweetyyy</li>
+          <li>🎵 TikTok : hi_sweet.y</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <div>© 2026 Hi Sweety — Tous droits réservés.</div>
+      <div>28 Av. Paul Vaillant Couturier, 93240 Stains</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const items=[
+ {cat:"Bubble Tea",name:"Taro Lover",price:"5,90 €",desc:"Lait de taro, perles tapioca moelleuses",img:"bubble-tea.jpg",tag:"Best-seller"},
+ {cat:"Bubble Tea",name:"Mango Sunshine",price:"5,90 €",desc:"Mangue fraîche, perles popping ananas",img:"mango-tea.jpg"},
+ {cat:"Bubble Tea",name:"Strawberry Cloud",price:"5,90 €",desc:"Fraise, lait, perles brown sugar",img:"milkshake.jpg"},
+ {cat:"Milkshakes",name:"Strawberry Dream",price:"6,50 €",desc:"Fraises fraîches, glace vanille, chantilly",img:"milkshake.jpg",tag:"Coup de cœur"},
+ {cat:"Milkshakes",name:"Choco Madness",price:"6,90 €",desc:"Chocolat belge, brownie, sauce caramel",img:"dessert.jpg"},
+ {cat:"Milkshakes",name:"Mango Tropic",price:"6,50 €",desc:"Mangue, fruit de la passion, lait coco",img:"mango-tea.jpg"},
+ {cat:"Pancakes & Gaufres",name:"Pancakes Berry",price:"8,90 €",desc:"Stack de 4 pancakes, fruits rouges, sirop d'érable",img:"pancakes.jpg",tag:"Best-seller"},
+ {cat:"Pancakes & Gaufres",name:"Gaufre Choco-Banane",price:"7,90 €",desc:"Chocolat fondu, banane, chantilly maison",img:"waffle.jpg"},
+ {cat:"Pancakes & Gaufres",name:"Crêpe Nutella",price:"5,50 €",desc:"Nutella, banane, fraises, sucre glace",img:"crepe.jpg"},
+ {cat:"Desserts",name:"Lava Cake",price:"6,90 €",desc:"Cœur coulant chocolat, glace vanille",img:"dessert.jpg",tag:"Nouveau"},
+ {cat:"Desserts",name:"Cheesecake Fraise",price:"5,90 €",desc:"Cheesecake new-yorkais, coulis maison",img:"milkshake.jpg"},
+ {cat:"Desserts",name:"Tiramisu Speculoos",price:"5,50 €",desc:"Mascarpone, speculoos croquants",img:"dessert.jpg"}
+];
+const grid=document.getElementById('menuGrid');
+function render(cat){
+  const list=cat==="Tous"?items:items.filter(i=>i.cat===cat);
+  grid.innerHTML=list.map(i=>`
+    <article class="menu-card">
+      <div class="menu-img">
+        <img src="assets/${i.img}" alt="${i.name}" loading="lazy">
+        ${i.tag?`<span class="menu-tag">${i.tag}</span>`:""}
+      </div>
+      <div class="menu-body">
+        <div class="row"><h3>${i.name}</h3><span class="price">${i.price}</span></div>
+        <p>${i.desc}</p>
+        <button class="btn btn-primary">+ Ajouter au panier</button>
+      </div>
+    </article>`).join('');
+}
+render("Tous");
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  render(t.dataset.cat);
+}));
+</script>
+</body>
+</html>
